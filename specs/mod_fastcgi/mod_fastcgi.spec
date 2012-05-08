@@ -42,11 +42,13 @@ cp Makefile.AP2 Makefile
 %{__cat} <<EOF >fastcgi.httpd
 # WARNING: this is a kludge:
 ## The User/Group for httpd need to be set before we can load mod_fastcgi,
-## but /etc/httpd/conf.d/fastcgi.conf on RHEL gets loaded before
-## /etc/httpd/conf/httpd.conf, so we need to set them here :(
+##  but /etc/httpd/conf.d/fastcgi.conf on RHEL gets loaded before
+##  /etc/httpd/conf/httpd.conf, so we need to set them here :(
 ## mod_fcgid does not have this bug,
-## but it does not handle child PHP processes appropriately per
-## http://serverfault.com/questions/303535/a-single-php-fastcgi-process-blocks-all-other-php-requests/305093#305093
+##  but it does not handle child PHP processes per
+##  http://serverfault.com/questions/303535/a-single-php-fastcgi-process-blocks-all-other-php-requests/305093#305093
+##  since it opts instead for doing its own process management per
+##  http://mail-archives.apache.org/mod_mbox/httpd-users/201003.mbox/%3C20100324193501.GA2363@bitz.org%3E
 
 User apache
 Group apache
